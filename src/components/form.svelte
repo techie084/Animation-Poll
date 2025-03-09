@@ -47,7 +47,6 @@
   };
 </script>
 
-
 <form on:submit|preventDefault={submitHandler}>
   <div class="form-field">
     <label for="question">Poll Question:</label>
@@ -69,7 +68,7 @@
 
 <style>
   form {
-    width: 350px;
+    width: 330px;
     text-align: center;
     margin: 0 auto;
   }
@@ -92,5 +91,11 @@
     font-weight: bold;
     font-size: 12px;
     color: #d91b42;
+  }
+
+  @media (max-width: 640px) {
+    .form-field {
+      max-width: 350px;
+    }
   }
 </style>

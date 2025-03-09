@@ -28,7 +28,6 @@
 
 <style>
   main {
-    /* width: 100%; */
     max-width: 960px;
     padding: 1em;
     margin: 40px auto;
