@@ -1,7 +1,7 @@
 <script>
   import Card from "../shared/card.svelte";
   import Button from "../shared/btn.svelte";
-  import PollStore from "../stores/Poll-Store.svelte";
+  import PollStore from "../stores/pollStore";
   import { tweened } from "svelte/motion";
 
   export let poll;
@@ -16,7 +16,7 @@
   const tweenedB = tweened(0);
   $: tweenedA.set(percentA);
   $: tweenedB.set(percentB);
-  $: console.log($tweenedA, $tweenedB);
+  // $: console.log($tweenedA, $tweenedB);
 
   // handling poll votes
   const handleVote = (option, id) => {
@@ -35,9 +35,9 @@
   };
 
   // handling poll delete
-  const handleDelete = () => {
-    PollStore.update((currentPolls) => {
-      return currentPolls.filter((poll) => poll.id != id);
+  const handleDelete = (id) => {
+    PollStore.update((polls) => {
+      return polls.filter((poll) => poll.id != id);
     });
   };
 </script>
@@ -49,21 +49,17 @@
 
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class="answer" on:click={() => handleVote("a", poll.id)}>
-      <div class="percent percent-a" style="width: {$tweenedA}%;">
-        <span>{poll.answerA} ({poll.votesA})</span>
-      </div>
+      <div class="percent percent-a" style="width: {$tweenedA}%;"></div>
+      <span>{poll.answerA} ({poll.votesA} votes)</span>
     </div>
 
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class="answer" on:click={() => handleVote("b", poll.id)}>
-      <div class="percent percent-b" style="width: {$tweenedB}%;">
-        <span>{poll.answerB} ({poll.votesB})</span>
-      </div>
-      <div class="delete">
-        <Button flat={true} on:click={() => handleDelete(poll.id)}
-          >Delete</Button
-        >
-      </div>
+      <div class="percent percent-b" style="width: {$tweenedB}%;"></div>
+      <span>{poll.answerB} ({poll.votesB} votes)</span>
+    </div>
+    <div class="delete">
+      <Button flat={true} on:click={() => handleDelete(poll.id)}>Delete</Button>
     </div>
   </div>
 </Card>
@@ -104,13 +100,13 @@
   }
 
   .percent-a {
-    border-left: 4px solid #d91b42;
     background: rgba(217, 27, 66, 0.2);
+    border-left: 4px solid #d91b42;
   }
 
   .percent-b {
-    border-left: 4px solid #45c496;
     background: rgba(69, 196, 150, 0.2);
+    border-left: 4px solid #45c496;
   }
   .delete {
     margin-top: 30px;

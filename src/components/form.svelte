@@ -1,5 +1,5 @@
 <script>
-  import PollStore from "../stores/Poll-Store.svelte";
+  import PollStore from "../stores/pollStore.js";
   import { createEventDispatcher } from "svelte";
   import Button from "../shared/btn.svelte";
 
@@ -47,20 +47,20 @@
   };
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<form on:click|preventDefault={submitHandler}>
+
+<form on:submit|preventDefault={submitHandler}>
   <div class="form-field">
-    <label for="question">Poll Question</label>
+    <label for="question">Poll Question:</label>
     <input type="text" id="question" bind:value={fields.question} />
     <div class="error">{errors.question}</div>
   </div>
   <div class="form-field">
-    <label for="answer-a">Answer A</label>
+    <label for="answer-a">Answer A value:</label>
     <input type="text" id="answer-a" bind:value={fields.answerA} />
     <div class="error">{errors.answerA}</div>
   </div>
   <div class="form-field">
-    <label for="answer-b">Answer B</label>
+    <label for="answer-b">Answer B value:</label>
     <input type="text" id="answer-b" bind:value={fields.answerB} />
     <div class="error">{errors.answerB}</div>
   </div>

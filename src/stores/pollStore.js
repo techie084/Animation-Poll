@@ -5,7 +5,7 @@ const PollStore = writable([
     id: 1,
     question: "Python Or JavaScript",
     answerA: "Python",
-    answerB: "JavaScripts",
+    answerB: "JavaScript",
     votesA: 9,
     votesB: 15,
   },

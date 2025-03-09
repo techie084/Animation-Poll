@@ -8,10 +8,7 @@
   // tabs
   let items = ["Current Polls", "Add New Poll"];
   let activeItem = "Current Polls";
-
-  const tabChange = (e) => {
-    activeItem = e.detail;
-  };
+  const tabChange = (e) => (activeItem = e.detail);
 
   const handleAdd = () => {
     activeItem = "Current Polls";
@@ -22,7 +19,7 @@
 <main>
   <Tabs {activeItem} {items} on:tabChange={tabChange} />
   {#if activeItem === "Current Polls"}
-    <PollList  />
+    <PollList />
   {:else if activeItem === "Add New Poll"}
     <CreatePollForm on:add={handleAdd} />
   {/if}
@@ -31,16 +28,9 @@
 
 <style>
   main {
-    /* text-align: center; */
-    padding: 1em;
+    /* width: 100%; */
     max-width: 960px;
+    padding: 1em;
     margin: 40px auto;
-  }
-  /* color: #ff3e00; */
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
   }
 </style>

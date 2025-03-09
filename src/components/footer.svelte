@@ -9,10 +9,10 @@
   }
 
   .copyright {
-    color: #aaa;
+    color: #333;
     font-size: 14px;
     display: inline-block;
     padding: 20px;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #333;
   }
 </style>
